@@ -28,7 +28,7 @@ services:
     expose:
       - "8000"
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/static_root
     env_file:
       - .env
     depends_on:
