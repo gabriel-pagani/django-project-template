@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'app.backends.EmailModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Sao_Paulo'
@@ -81,3 +87,5 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+
+AUTH_USER_MODEL = 'app.Users'

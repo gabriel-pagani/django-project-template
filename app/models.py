@@ -1,3 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
-# Create your models here.
+
+class Users(AbstractUser):
+    email = models.EmailField(blank=True, null=True)
+    observations = models.TextField(blank=True, null=True)
+
+    def clean(self):
+        super().clean()
+        if self.email:
+            email = Users.objects.filter(email=self.email).exclude(pk=self.pk)
+            if email.exists():
+                raise ValidationError({'email': 'A user with this email already exists.'})
